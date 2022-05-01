@@ -1,0 +1,139 @@
+body {
+    background-image:url("MoonBackdrop.jpeg");
+    background-color: black;
+    font-family:'Times New Roman', Times, serif;
+    color: azure;
+    text-align:center;
+      
+    
+  
+}
+h1 {    
+    color: rgb(12, 226, 226);
+    text-align:center;
+    text-anchor: middle;
+  
+}
+
+
+
+}
+.bg-image {
+   
+    background-image: url("MoonBackdrop.jpeg");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100%; 
+     background-position: center;
+    background-repeat: no-repeat;
+    background-size:auto;
+  }
+  
+.button {font-size: 14px;min-width: auto; min-height: 14px; padding: 1%; }
+.button::after {font-size: 14px;}
+
+.button::after {
+content: "Begin Test Sequence";
+}
+.button:hover::after {
+ content: "Initiate Test Sequence!";
+}
+
+.button:hover {
+background-color: green;
+border: 3px solid #034714;
+color: white !important;
+}
+
+.action {font-size: 14px;min-width: auto; min-height: 14px; padding: 1%;  }
+.action ::after {font-size: 14px;}
+
+.action::after {
+content:"Pause Test Sequence";
+}
+.action:hover::after {
+ content: "Pausing Test Sequence!";
+}
+
+.action:hover {
+background-color: rgb(207, 39, 5);
+border: 3px solid #580703;
+color: white;
+}
+
+.slide-progress-bar {
+  width: 100px;
+  height: 10px;
+  background-color: rgba(70, 17, 227, 0.9);
+  transition: width 10s linear;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.progress-bar {
+  height: 10px;
+  width: 0px;
+  background-color: rgb(255, 21, 0);
+  position: relative;
+  transition-duration:1ms;  
+}
+.box input[type="text"]:focus,.box input[type="password"]:focus{
+    width: 270px;
+    border-color: #9000f0;
+    }
+    
+    .box input[type="submit"]{
+        border: 0;
+        background:none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 3px solid #9000f0;
+        padding: 14px 10px;
+        width: 220px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25px;
+        cursor: pointer;
+    }
+    .box input[type="submit"]:hover{
+    background:#9000f0;
+    }
+   
+    .box{
+        width: 200px;
+        padding: 10px;
+        position: center;
+        top: auto;
+        left: auto;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.733);
+        margin-left: auto;
+        margin-right:auto;
+        border-radius: 24px;
+        border-color: #9000f0;
+        }
+        
+        .box h1
+        {
+            color: azure;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+           
+        .box input[type="text"],.box input[type="password"]
+        {
+            border: 0;
+            background:none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 3px solid #be9a09;
+            padding: 14px 10px;
+            width: 220px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25px;
+        }

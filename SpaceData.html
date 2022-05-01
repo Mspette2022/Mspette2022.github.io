@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Galaxy Data Extractor 
+    </title>
+   <!--This is where the brain of the functions live-->
+    <script src="SpaceFunc.js"></script>
+   <!--This is the data extractor script-->
+    <script src="dataLoader-1.js"></script>
+    <!--Our Styles and Customization -->
+    <link rel="stylesheet" type="text/css" href="SpaceStyles.css" />
+<!--Links to my CSS and JS-->
+</head>
+<h1>Java Script DOM</h1>
+
+<!--Column design-->
+<body>
+
+
+<form class="box" action="IndexPage.html">
+    <button class="btn">Return to Directory</button>
+    </form>
+
+    <table id="data" style="width: auto;" style="height:auto;" style=display:block; class=".tbl">
+        
+        <col style="width:20%;">
+        <col style="width:20%;">
+        <col style="width:20%">
+        <col style="width:20%">
+        <br>
+        
+<!--Style and Header-->
+  <!--Table Header-->            
+  <thead class=".tbl">
+                <tr style="font-family: fantasy;">
+                    <tr style="color:aqua"></tr>
+                    <th>Data Type</th>
+                    <th>Reading</th>
+                   <!--Designing Table Cells and Assigning input data cells-->
+                </tr>
+            
+                <tr id= "seconds"> <td>Time Elapsed:</td>                          <td></td>
+                   <!--Slide our Progress bar in between Table Data-->
+                    <tr id="progressBar"><td><div class="slide-progress-bar">
+                        <div class="progress-bar" id="progress-bar">1%</div>
+                        <!--progress-bar-->
+                      </div>
+                      <!--slide-progress-bar-->
+                    </td>
+                <tr id= "latitude"> <td>Latitude:</td>                               <td></td> 
+                <tr id= "longitude"> <td>Longitude:</td>                             <td></td> 
+                <tr id= "gps_altitude"> <td>GPS Altitude:</td>                           <td></td> 
+                <tr id= "bmpSensor_altitude"> <td>BMP Sensor Altitude:</td>              <td></td> 
+                <tr id= "bmpSensor_pressure"> <td>BMP Sensor Pressure:</td>            <td></td> 
+                <tr id= "digSensor_temp"> <td>Digital Sensor Temp:</td>         <td></td> 
+                <tr id= "cssSensor_temp"> <td>CSS Sensor Temp:</td>              <td></td> 
+                <tr id= "cssSensor_eCO2"> <td>CSS Sensor eCO2:</td>               <td></td> 
+                <tr id= "cssSensor_TVOC"> <td>CSS Sensor TVOC:</td>              <td></td> 
+                <tr id= "UV"> <td>UV:</td>                                      <td></td> 
+                <tr id= "speed"> <td>Speed:</td>                                <td></td> 
+                <p style = "font-weight: bolder;">
+                    <tr>
+                        <th>The time is:</th>
+                    </tr>
+                </p>
+ </thead>
+                <tbody>
+                    <tr id="time">
+                    </tr>
+                </tbody>
+           
+                </table>
+            
+<thead>
+<!--Setting up the action for the buttons-->
+</body>
+
+<br>
+<br>
+
+<script>
+    var elem = document.getElementById("progress-bar");
+var width = 1;
+var interval;
+
+function progressBar() {
+  resetProgressBar();
+
+  interval = setInterval(frame, 50);
+
+  function frame() {
+    if (width >= 100) {
+      clearInterval(interval);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+      elem.innerHTML = width * 1  + '%';
+    }
+  }
+}
+
+function resetProgressBar() {
+  width = 1;
+  clearInterval(interval)
+  elem.style.width = width + '%';
+}
+    var theTime = new Date();
+var tempTime = new Date ();
+var time_interval = 5000;
+var last_iteration = 0;
+var running = true;
+var index = 0;
+var timer;
+// Collates raw data from our extractor
+var data = getData();
+// Function that Updates tr id's
+function updateDisplay() {
+theTime = new Date();
+console.log(
+     "Display : " +
+    (theTime.getHours() < 10 ? "0" +theTime.getHours() : theTime.getHours()) +
+        " : " + (theTime.getMinutes() < 10 ? "0" +theTime.getMinutes() : theTime.getMinutes()) +
+        " : " + (theTime.getSeconds() < 10 ? "0" +theTime.getSeconds() : theTime.getSeconds())
+        );
+//Content for table
+var timeRead = data[index].time_seconds;
+if (timeRead >=5) {
+    document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+    document.getElementById("data").rows["latitude"].innerHTML = dataRow("Latitude", data[index].latitude, " ");
+    document.getElementById("data").rows["longitude"].innerHTML = dataRow("Longitude", data[index].longitude, " ");
+    document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("GPS Altitude", data[index].gps_altitude, " ");
+    document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("BMP Sensor Altitude", data[index].bmpSensor_altitude, " ");
+    document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("BMP Sensor Pressure", data[index].bmpSensor_pressure, " ");
+    document.getElementById("data").rows["digSensor_temp"].innerHTML = dataRow("Digital Sensor Temp", data[index].digSensor_temp, " ");
+    document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("CSS Sensor Temp", data[index].cssSensor_temp, " ");
+    document.getElementById("data").rows["cssSensor_eCO2"].innerHTML = dataRow("CSS Sensor eCO2", data[index].cssSensor_eCO2, " ");
+    document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("CSS Sensor TVOC", data[index].cssSensor_TVOC, " ");
+    document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV, " ");
+    document.getElementById("data").rows["speed"].innerHTML = dataRow("Speed", data[index].speed, " ");
+
+    if (index <499) {
+        index++;
+    } else {
+        index = 0;
+    }
+
+}
+// Timer showing on bottom
+document.getElementById("time").innerHTML =
+(theTime.getHours() < 10 ? "0" + theTime.getHours() : theTime.getHours()) +
+":" + (theTime.getMinutes() < 10 ? "0" + theTime.getMinutes() : theTime.getMinutes()) +
+":" + (theTime.getSeconds() < 10 ? "0" + theTime.getSeconds() : theTime.getSeconds());
+}
+
+function stop() {
+    clearInterval(timer);
+    document.getElementById("startButton").disabled = false ;
+    document.getElementById("stopButton").disabled = true ;
+}
+// Starting the Timer
+function start () {
+    document.getElementById("data").rows["seconds"].innerHTML = "Reading data. . ." ;
+    index = 0;
+    timer = setInterval(updateDisplay, time_interval);
+    document.getElementById("startButton").disabled = true ;
+    document.getElementById("stopButton").disabled = false ;
+
+}
+
+</script>
+</head>  
+
+<INPUT id="startButton"  type="button" value="Start" onclick="start(); progressBar();"class="button">
+
+<INPUT id="stopButton" type="button" value="Stop" onclick="stop(); resetProgressBar()" class="action" disabled="true">
+
+
+</html>
