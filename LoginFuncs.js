@@ -20,7 +20,7 @@ else if (badgeNum >999 || badgeNum <100 ||badgeNum.length <3) {
 //If badge number exceeds 3 numbers, it prompts badge not valid
 else {
  alert ("Access Granted, Hello " + fullName + "!");
- location.replace ("IndexPage.html")
+ window.open ("IndexPage.html");
 }
 //If prompt conditions are met, You are granted access!
 }
